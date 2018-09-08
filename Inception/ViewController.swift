@@ -108,8 +108,20 @@ class ViewController: UIViewController {
   func show(results: [Prediction]) {
     var s: [String] = []
     for (i, pred) in results.enumerated() {
-      s.append(String(format: "%d: %@ (%3.2f%%)", i + 1, pred.0, pred.1 * 100))
+        if i == 0 {
+            if pred.0 == "Benign" {
+                s=["Looks okay, but get it checked if you're worried"]
+            } else if pred.0 == "Malignant" {
+                s=["You should get that checked out by your doctor"]
+            } else if pred.0 == "Healthy Skin" {
+                s=["Looks like healthy skin"]
+            } else {
+                s=["Hold camera over skin area"]
+            }
+        }
     }
+    //s.append(String(format: "%d: %@ (%3.2f%%)", i + 1, pred.0, pred.1 * 100))
+    
     predictionLabel.text = s.joined(separator: "\n\n")
 
     let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
