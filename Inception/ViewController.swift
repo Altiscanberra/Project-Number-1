@@ -7,7 +7,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var predictionLabel: UILabel!
   @IBOutlet weak var timeLabel: UILabel!
 
-  let model = Inceptionv3()
+ // let model = Inceptionv3()
+    let model = SkinConditions()
 
   var videoCapture: VideoCapture!
   var request: VNCoreMLRequest!
@@ -94,7 +95,7 @@ class ViewController: UIViewController {
 
       // The observations appear to be sorted by confidence already, so we
       // take the top 5 and map them to an array of (String, Double) tuples.
-      let top5 = observations.prefix(through: 4)
+      let top5 = observations.prefix(through: 2)
                              .map { ($0.identifier, Double($0.confidence)) }
 
       DispatchQueue.main.async {
